@@ -103,7 +103,8 @@ Note that for s3, you'll need to specify your AWS credentials and default AWS re
 
 ## About us
 
-![](https://www.ultra-sites.de/wp-content/uploads/2022/02/logo_ultrasites.png)
+![](https://www.ultra-sites.de/wp-content/uploads/2022/02/logo_ultrasites-e1643806216404.png)
+
 &copy; 2022 Ultra Sites Medienagentur
 
 https://www.ultra-sites.de
