@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  data_backup_s3:
+    build: ../
+    restart: always
+    container_name: data_backup_s3
+    user: "0"
+    environment:
+      # - BACKUP_CRON=0 5 * * *
+      - BACKUP_FREQ=5 # every 5 minutes
+      - BACKUP_BEGIN=+0 # starts immediately
+      # - BACKUP_DEBUG=true
+      - AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
+      - AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
+      - AWS_ENDPOINT_URL=<YOUR_ENDPOINT_URL>
+      - AWS_DEFAULT_REGION=us-east-1
+      - S3_TARGET=<YOUR_S3_PATH>
+    volumes:
+      - ./data:/home/backupuser/data
