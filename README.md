@@ -33,7 +33,7 @@ The above will run a backup every 60 minutes, beginning at the next 2330 local t
 - <code>BACKUP_CRON</code>: Set the BACKUP schedule using standard crontab syntax, a single line.
 - <code>RUN_ONCE</code>: Run the backup once and exit if RUN_ONCE is set. Useful if you use an external scheduler (e.g. as part of an orchestration solution like Cattle or Docker Swarm or kubernetes cron jobs) and don't want the container to do the scheduling internally. If you use this option, all other scheduling options, like BACKUP_FREQ and BACKUP_BEGIN and BACKUP_CRON, become obsolete.
 - <code>BACKUP_DEBUG</code>: If set to true, print copious shell script messages to the container log. Otherwise only basic messages are printed.
-- <code>BACKUP_TARGET</code>:
+- <code>S3_TARGET</code>:
   S3 target with the format s3://bucketname/path. Connection via awscli.
 - <code>AWS_ACCESS_KEY_ID</code>: AWS Key ID
 - <code>AWS_SECRET_ACCESS_KEY</code>: AWS Secret Access Key
@@ -71,7 +71,7 @@ The scheduling options have an order of priority:
 
 By default, the backup/restore process does not run as root (UID O). Whenever possible, you should run processes (not just in containers) as users other than root. In this case, it runs as username appuser with UID/GID 1005.
 
-In most scenarios, this will not affect your backup process negatively. However, if you are using the "Local" BACKUP target, i.e. your <code>BACKUP_TARGET</code> starts with / - and, most likely, is a volume mounted into the container - you can run into permissions issues. For example, if your mounted directory is owned by root on the host, then the backup process will be unable to write to it.
+In most scenarios, this will not affect your backup process negatively. However, if you are using the "Local" BACKUP target, i.e. your <code>S3_TARGET</code> starts with / - and, most likely, is a volume mounted into the container - you can run into permissions issues. For example, if your mounted directory is owned by root on the host, then the backup process will be unable to write to it.
 
 In this case, you have two options:
 
